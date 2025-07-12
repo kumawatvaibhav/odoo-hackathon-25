@@ -205,3 +205,58 @@
     gap: 8px;
   }
 }
+
+/* Special Home button styles */
+.nav-home-special {
+  background: linear-gradient(90deg, #47a4ff 0%, #f5a040 100%);
+  color: #fff !important;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 0 0 0 rgba(245,160,64,0.5), 0 2px 8px rgba(71,164,255,0.10);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.nav-home-special::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 100%);
+  transform: skewX(-20deg);
+  transition: left 0.5s;
+  z-index: 2;
+}
+
+.nav-home-special:hover::before {
+  left: 120%;
+  transition: left 0.5s;
+}
+
+.nav-home-special:hover {
+  box-shadow: 0 0 16px 4px #47a4ff88, 0 2px 16px 0 #f5a04055;
+  transform: scale(1.06) rotate(-1deg);
+}
+
+.nav-home-special:active {
+  box-shadow: 0 0 24px 8px #f5a04099, 0 2px 16px 0 #47a4ff55;
+  transform: scale(0.98);
+}
+
+.nav-notification-btn .bell-animate {
+  animation: bell-ring 1.2s infinite cubic-bezier(.36,.07,.19,.97);
+  transform-origin: top center;
+  display: inline-block;
+}
+
+@keyframes bell-ring {
+  0% { transform: rotate(0); }
+  10% { transform: rotate(-18deg); }
+  20% { transform: rotate(16deg); }
+  30% { transform: rotate(-12deg); }
+  40% { transform: rotate(8deg); }
+  50% { transform: rotate(-4deg); }
+  60%, 100% { transform: rotate(0); }
+}

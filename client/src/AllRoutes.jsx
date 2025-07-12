@@ -8,10 +8,10 @@ import Tags from './pages/Tags/Tags'
 import Users from "./pages/Users/Users"
 import UserProfile from "./pages/UserProfile/UserProfile"
 
-const AllRoutes = () => {
+const AllRoutes = ({ HomeMainbarComponent }) => {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
+      <Route path='/' element={<Home HomeMainbarComponent={HomeMainbarComponent} />} />
       <Route path='/Auth' element={<Auth />} />
       <Route path='/AskQuestion' element={<AskQuestion />} />
       <Route path='/Questions' element={<Questions />} />

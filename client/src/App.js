@@ -8,10 +8,13 @@ import { fetchAllQuestions } from "./actions/question";
 import { fetchAllUsers } from "./actions/users";
 import { Toaster } from 'react-hot-toast';
 import ActionBar from './components/ActionBar/ActionBar';
+import Footer from './components/Footer/Footer';
+import HomeMainbar from './components/HomeMainbar/HomeMainbar';
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false) 
-  const [isVerified, setIsVerified] = useState(false) 
+  const [isOpen, setIsOpen] = useState(false)
+  const [isVerified, setIsVerified] = useState(false)
+  const [filter, setFilter] = useState('newest');
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -24,8 +27,10 @@ function App() {
       <Router>
         <Toaster />
         <Navbar setIsOpen={setIsOpen}/>
-        <ActionBar />
-        <AllRoutes />
+        <ActionBar onFilterChange={setFilter} />
+        {/* Only pass filter to HomeMainbar if on home route */}
+        <AllRoutes HomeMainbarComponent={<HomeMainbar filter={filter} />} />
+        <Footer />
       </Router>
     </div>
   );

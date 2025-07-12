@@ -1,8 +1,29 @@
 .user-list-container {
-  padding: 30px 0px;
+  padding: 18px 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1200px) {
+  .user-list-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .user-list-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .user-list-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 400px) {
+  .user-list-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 .user-profile-link {
@@ -11,12 +32,13 @@
   justify-content: flex-start;
   text-decoration: none;
   color: var(--text-primary);
-  padding: 15px;
+  padding: 8px 10px;
   background-color: var(--card-bg);
   border-radius: 8px;
   border: 1px solid var(--border-color);
   transition: 0.2s;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  min-height: 60px;
 }
 
 .user-profile-link:hover {
@@ -34,6 +56,12 @@
 }
 
 .user-profile-link h5 {
-  margin: 0px 10px;
+  margin: 0px 8px;
   color: var(--text-secondary);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.user-profile-link .avatar {
+  margin-right: 8px;
 }

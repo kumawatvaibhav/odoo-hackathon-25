@@ -10,8 +10,8 @@ import { setCurrentUser } from '../../actions/currentUser'
 import logo from '../../assets/logo.png'
 import search from '../../assets/search-solid.svg'
 import bars from "../../assets/bars-solid.svg";
+import { FiBell } from 'react-icons/fi';
 import './Navbar.css'
-
 
 const Navbar = ({ setIsOpen }) => {
   const dispatch = useDispatch()
@@ -46,9 +46,12 @@ const Navbar = ({ setIsOpen }) => {
           <span className="navbar-brand-text" style={{fontWeight: 700, fontSize: '1.5rem', color: 'var(--text-primary)', letterSpacing: '1px'}}>StackIt</span>
         </Link>
         <div className="navbar-right">
-          <Link to="/" className="nav-item nav-links" style={{marginRight: '16px', fontWeight: 500, fontSize: '1.05rem', color: 'var(--text-primary)', textDecoration: 'none'}}>
+          <Link to="/" className="nav-item nav-links nav-home-special" style={{marginRight: '16px', fontWeight: 500, fontSize: '1.05rem', color: 'var(--text-primary)', textDecoration: 'none'}}>
             Home
           </Link>
+          <button className="nav-item nav-links nav-notification-btn" style={{marginRight: '16px', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '8px'}} aria-label="Notifications">
+            <FiBell className="bell-animate" style={{fontSize: '1.5rem', color: 'var(--text-primary)'}} />
+          </button>
           {User === null ? (
             <Link to={'/Auth'} className='nav-item nav-links'>
               Log In

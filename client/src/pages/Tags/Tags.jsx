@@ -1,4 +1,5 @@
-import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
+import React from 'react'
+import RightSidebar from '../../components/RightSidebar/RightSidebar'
 import TagsList from "./TagsList";
 import { tagsList } from "./tagList";
 import "./Tags.css";
@@ -6,7 +7,6 @@ import "./Tags.css";
 const Tags = () => {
   return (
     <div className='home-container-1'>
-      <LeftSidebar />
       <div className="home-container-2">
         <h1 className="tags-h1">
           Tags
@@ -24,6 +24,7 @@ const Tags = () => {
             <TagsList tag={tag} key={tag.id} />
           ))}
         </div>
+        <RightSidebar />
       </div>
     </div>
   )

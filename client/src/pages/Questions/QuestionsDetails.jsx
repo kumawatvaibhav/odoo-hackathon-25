@@ -94,29 +94,44 @@ const QuestionsDetails = () => {
                 <section className="question-details-container">
                   <h1>{question.questionTitle}</h1>
                   <div className="question-details-container-2">
-                    <div className="question-votes">
-                      <img
-                        src={upvote}
-                        alt=""
-                        width="18"
-                        className="votes-icon"
-                        onClick={handleUpVote}
-                      />
-                      <p>{question.upVote.length - question.downVote.length}</p>
-                      <img
-                        src={downvote}
-                        alt=""
-                        width="18"
-                        className="votes-icon"
-                        onClick={handleDownVote}
-                      />
-                    </div>
                     <div style={{ width: "100%" }}>
                       <p className="question-body">{HTMLReactParser(question.questionBody)}</p>
                       <div className="question-details-tags">
                         {question.questionTags.map((tag) => (
                           <div key={tag}>{tag}</div>
                         ))}
+                      </div>
+                      {/* Voting UI moved here */}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '10px 0 2px 0' }}>
+                        <span
+                          style={{
+                            fontSize: '1.4rem',
+                            cursor: 'pointer',
+                            userSelect: 'none',
+                            transition: 'opacity 0.2s',
+                          }}
+                          onClick={handleUpVote}
+                          role="img"
+                          aria-label="thumbs up"
+                        >
+                          👍
+                        </span>
+                        <span style={{ fontWeight: 700, fontSize: '1.1rem', minWidth: 24, textAlign: 'center' }}>
+                          {question.upVote.length - question.downVote.length}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: '1.4rem',
+                            cursor: 'pointer',
+                            userSelect: 'none',
+                            transition: 'opacity 0.2s',
+                          }}
+                          onClick={handleDownVote}
+                          role="img"
+                          aria-label="thumbs down"
+                        >
+                          👎
+                        </span>
                       </div>
                       <div className="question-actions-user">
                         <div>

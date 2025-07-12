@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Questions from "./Questions";
 
 const QUESTIONS_PER_PAGE = 20;
 
-const QuestionList = ({ questionsList }) => {
+const QuestionList = ({ questionsList, filter = 'newest' }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(questionsList.length / QUESTIONS_PER_PAGE);
+
+  // Filtering and sorting logic
+  const filteredQuestions = useMemo(() => {
+    let list = [...questionsList];
+    switch (filter) {
+      case 'unanswered':
+        list = list.filter(q => (q.noOfAnswers === 0 || !q.noOfAnswers));
+        break;
+      case 'most_answered':
+        list = list.sort((a, b) => (b.noOfAnswers || 0) - (a.noOfAnswers || 0));
+        break;
+      case 'recent':
+        list = list.sort((a, b) => new Date(b.askedOn) - new Date(a.askedOn));
+        break;
+      case 'newest':
+      default:
+        list = list.sort((a, b) => new Date(b.createdAt || b.askedOn) - new Date(a.createdAt || a.askedOn));
+        break;
+    }
+    return list;
+  }, [questionsList, filter]);
+
+  const totalPages = Math.ceil(filteredQuestions.length / QUESTIONS_PER_PAGE);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) setCurrentPage(page);
@@ -13,7 +35,7 @@ const QuestionList = ({ questionsList }) => {
 
   const startIdx = (currentPage - 1) * QUESTIONS_PER_PAGE;
   const endIdx = startIdx + QUESTIONS_PER_PAGE;
-  const currentQuestions = questionsList.slice(startIdx, endIdx);
+  const currentQuestions = filteredQuestions.slice(startIdx, endIdx);
 
   return (
     <>
