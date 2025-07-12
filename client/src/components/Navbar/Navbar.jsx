@@ -77,6 +77,7 @@ const Navbar = ({ setIsOpen }) => {
               <span style={{fontWeight: 500, fontSize: '1.05rem', color: 'var(--text-primary)'}}>
                 Hi, {User.result.name.split(' ')[0]}!
               </span>
+              <button onClick={handleLogout} className="nav-item nav-links nav-logout-btn" style={{marginLeft: '6px'}}>Log Out</button>
             </div>
           )}
         </div>
