@@ -1,9 +1,9 @@
 import nodemailer from 'nodemailer'
-
+import dotenv from "dotenv";
+dotenv.config();
 const { AUTH_EMAIL, AUTH_PASS } = process.env
-
 let transporter = nodemailer.createTransport({
-  host: 'smtp-mail.outlook.com',
+  host: 'smtp.ethereal.email',
   auth: {
     user: AUTH_EMAIL,
     pass: AUTH_PASS,

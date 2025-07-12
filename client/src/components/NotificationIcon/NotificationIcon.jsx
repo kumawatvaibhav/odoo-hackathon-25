@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { getNotifications, markAsRead, getUnreadCount } from '../../actions/notifications'
 import { useDispatch } from 'react-redux'
@@ -11,6 +11,24 @@ const NotificationIcon = () => {
   const User = useSelector((state) => (state.currentUserReducer))
   const dispatch = useDispatch()
   const dropdownRef = useRef(null)
+
+  const fetchNotifications = useCallback(async () => {
+    try {
+      const response = await dispatch(getNotifications(User.result._id))
+      setNotifications(response.payload || [])
+    } catch (error) {
+      console.error('Error fetching notifications:', error)
+    }
+  }, [dispatch, User?.result?._id])
+
+  const fetchUnreadCount = useCallback(async () => {
+    try {
+      const response = await dispatch(getUnreadCount(User.result._id))
+      setUnreadCount(response.payload?.count || 0)
+    } catch (error) {
+      console.error('Error fetching unread count:', error)
+    }
+  }, [dispatch, User?.result?._id])
 
   useEffect(() => {
     if (User?.result?._id) {
@@ -25,7 +43,7 @@ const NotificationIcon = () => {
       
       return () => clearInterval(interval)
     }
-  }, [User?.result?._id])
+  }, [User?.result?._id, fetchNotifications, fetchUnreadCount])
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -42,24 +60,6 @@ const NotificationIcon = () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [isOpen])
-
-  const fetchNotifications = async () => {
-    try {
-      const response = await dispatch(getNotifications(User.result._id))
-      setNotifications(response.payload || [])
-    } catch (error) {
-      console.error('Error fetching notifications:', error)
-    }
-  }
-
-  const fetchUnreadCount = async () => {
-    try {
-      const response = await dispatch(getUnreadCount(User.result._id))
-      setUnreadCount(response.payload?.count || 0)
-    } catch (error) {
-      console.error('Error fetching unread count:', error)
-    }
-  }
 
   const handleNotificationClick = async (notification) => {
     if (!notification.isRead) {
