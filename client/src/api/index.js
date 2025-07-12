@@ -1,6 +1,7 @@
 import axios from 'axios'
+//https://stack-overflow-clone-server-vq27.onrender.com
 
-const API = axios.create({ baseURL: "https://stack-overflow-clone-server-vq27.onrender.com"})
+const API = axios.create({ baseURL: "http://localhost:5000"})
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("Profile")) {
@@ -45,3 +46,11 @@ export const fetchAllUsers = () => API.get("/user/getAllUsers");
 
 export const updateProfile = (id, updatedData) =>
   API.patch(`/user/update/${id}`, updatedData);
+
+// ADMIN
+export const getDashboardStats = () => API.get("/admin/dashboard");
+export const getAllUsersForAdmin = () => API.get("/admin/users");
+export const updateUserRole = (id, role) => API.patch(`/admin/users/${id}/role`, { role });
+export const adminDeleteQuestion = (id) => API.delete(`/admin/questions/${id}`);
+export const adminDeleteAnswer = (questionId, answerId) => 
+  API.delete(`/admin/questions/${questionId}/answers/${answerId}`);

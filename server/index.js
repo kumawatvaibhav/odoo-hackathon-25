@@ -13,7 +13,7 @@ import otpRoutes from './routes/Otp.js'
 dotenv.config()
 connectDB()
 
-const PORT = 5000
+const PORT = process.env.PORT || 5000
 
 const app = express();
 app.use(express.json({ limit: "30mb", extended: true }))
@@ -29,7 +29,7 @@ app.use("/admin", adminRoutes);
 
 
 app.get('/', (req, res) => {
-  res.send("Hello there , This is to test the server is running . Thank you for visiting - team 3839")
+  res.send("This is a stack overflow clone's API by Gautam Jha")
 })
 
 app.listen(PORT, () => {

@@ -22,25 +22,44 @@ const Auth = () => {
     setEmail("");
     setPassword("");
   }
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!email && !password) {
+
+  const validateEmail = (email) => {
+    // Simple email regex
+    return /^\S+@\S+\.\S+$/.test(email);
+  };
+
+  const validatePassword = (password) => {
+    // At least 6 characters, at least one letter and one number
+    return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(password);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
       return toast.error("Please enter email and password");
+    }
+    if (!validateEmail(email)) {
+      return toast.error("Please enter a valid email address");
+    }
+    if (!validatePassword(password)) {
+      return toast.error("Password must be at least 6 characters and contain at least one letter and one number");
     }
     if (isSignup) {
       if (!name) {
-        return toast.error("Please enter name")
+        return toast.error("Please enter name");
       }
-      dispatch(signup({ name, email, password }, navigate))
-      toast.success('Redirecting...')
-      toast.success('User registered successfully')
-      toast.success('Logged in successfully')
+      const result = await dispatch(signup({ name, email, password }, navigate));
+      if (result && !result.success) {
+        return toast.error(result.message);
+      }
+      toast.success('User registered and logged in successfully');
     } else {
-      dispatch(login({ email, password }, navigate))
-      toast.success('Redirecting...')
-      toast.success('Logged in successfully')
+      const result = await dispatch(login({ email, password }, navigate));
+      if (result && !result.success) {
+        return toast.error(result.message);
+      }
+      toast.success('Logged in successfully');
     }
-
   }
 
   return (

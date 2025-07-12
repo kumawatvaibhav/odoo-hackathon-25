@@ -77,6 +77,9 @@ const Navbar = ({ setIsOpen }) => {
               <span style={{fontWeight: 500, fontSize: '1.05rem', color: 'var(--text-primary)'}}>
                 Hi, {User.result.name.split(' ')[0]}!
               </span>
+              {User?.result?.role === 'admin' && (
+                <Link to="/admin" className="nav-item nav-links" style={{marginLeft: '6px', fontWeight: 500, fontSize: '1.05rem', color: 'var(--text-primary)', textDecoration: 'none'}}>Admin</Link>
+              )}
               <button onClick={handleLogout} className="nav-item nav-links nav-logout-btn" style={{marginLeft: '6px'}}>Log Out</button>
             </div>
           )}

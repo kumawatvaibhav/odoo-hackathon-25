@@ -112,3 +112,4 @@ const deleteOTP = async (email) => {
 }
 
 export { sendOTPController, verifyOTPController }
+

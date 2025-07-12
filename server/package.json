@@ -8,7 +8,7 @@
     "start": "nodemon index.js",
     "server": "node index.js"
   },
-  "author": "Vaibhav Kumawat - team 3839 Odoo Hackathon 25",
+  "author": "Gautam Jha",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",

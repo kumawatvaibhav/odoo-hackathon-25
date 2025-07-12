@@ -14,7 +14,7 @@ const adminAuth = async (req, res, next) => {
     }
 
     if (user.role !== "admin") {
-      return res.status(403).json({ message: "Access denied. Admin privileges required ask vaibhav." });
+      return res.status(403).json({ message: "Access denied. Admin privileges required." });
     }
 
     next();

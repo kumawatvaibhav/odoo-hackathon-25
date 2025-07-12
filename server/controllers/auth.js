@@ -1,44 +1,40 @@
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
 
-import Users from '../models/auth.js';
+import Users from '../models/auth.js'
 
-
-//for signing in a user : route h - user/signUp
 export const signUpController = async (req, res) => {
-    const { name, email, password } = req.body;
-    try{
-        const existingUser = await Users.findOne({ email });
-        if (existingUser) {
-            return res.status(404).json({
-                message: "User already exists."
-            });
-        }
-
-        const hashedPassword = await bcrypt.hash(password, 10)
-        const newUser = await Users.create({
-            name, email, password: hashedPassword
-        })
-
-        const token = jwt.sign({
-            email: newUser.email,
-            id: newUser._id,
-            role: newUser.role
-        },
-            process.env.JWT_SECRET,
-            { expiresIn: '1h' }
-        )
-
-        res.status(200).json({
-            result: newUser, token
-        })
+  const { name, email, password } = req.body
+  try {
+    const existingUser = await Users.findOne({ email })
+    if (existingUser) {
+      return res.status(409).json({
+        message: "Email is already in use. Please use a different email."
+      })
     }
-    catch (error){
-        res.status(500).json("Something went wrong...");
-    }
+
+    const hashedPassword = await bcrypt.hash(password, 10)
+    const newUser = await Users.create({
+      name, email, password: hashedPassword
+    })
+    const token = jwt.sign({
+      email: newUser.email,
+      id: newUser._id,
+      role: newUser.role
+    },
+      process.env.JWT_SECRET, 
+      { expiresIn: '1h' }
+    )
+
+    res.status(200).json({
+      result: newUser, token
+    })
+} catch (error) {
+  res.status(500).json({ message: "Something went wrong..." })
+}
 }
 
-//login a user : route h : user/logIn
+
 export const logInController = async (req, res) => {
   const { email, password } = req.body
   try {
@@ -69,6 +65,6 @@ export const logInController = async (req, res) => {
       result: existingUser, token
     })
   } catch (error) {
-    res.status(500).json("Something went wrong...")
+    res.status(500).json({ message: "Something went wrong..." })
   }
 }
