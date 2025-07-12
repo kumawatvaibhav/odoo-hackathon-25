@@ -9,5 +9,6 @@ router.post('/Ask', auth, askQuestion)
 router.get('/All', getAllQuestions)
 router.delete('/delete/:id', auth, deleteQuestion)
 router.patch("/vote/:id", auth, voteQuestion);
+router.patch("/accept-answer/:id", auth, acceptAnswer);
 
 export default router

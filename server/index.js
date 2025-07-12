@@ -26,6 +26,7 @@ app.use("/answer", answerRoutes);
 app.use("/chatbot", chatbotRoutes)
 app.use('/otp', otpRoutes)
 app.use("/admin", adminRoutes);
+app.use("/notifications", notificationRoutes);
 
 
 app.get('/', (req, res) => {
