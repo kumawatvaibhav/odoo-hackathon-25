@@ -10,15 +10,30 @@
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
-  color: black;
+  color: var(--text-primary);
+  padding: 15px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.user-profile-link:hover {
+  background-color: var(--secondary-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(74,222,128,0.10);
 }
 
 .user-profile-link h3 {
   padding: 10px 13px;
-  background-color: #d3d3d3;
+  background-color: var(--accent-hover);
   border-radius: 50%;
+  color: var(--accent-color);
+  font-weight: 600;
 }
 
 .user-profile-link h5 {
   margin: 0px 10px;
+  color: var(--text-secondary);
 }

@@ -1,6 +1,6 @@
 .ask-question {
   min-height: 80vh;
-  background-color: #f1f2f3;
+  background-color: var(--primary-bg);
 }
 
 .ask-ques-container {
@@ -11,50 +11,68 @@
 
 .ask-ques-container h1 {
   padding: 80px 0px 20px 0px;
+  color: var(--text-primary);
 }
 
 .ask-ques-container form .ask-form-container {
   padding: 20px;
-  background-color: white;
-  border-radius: 3px;
-  box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%),
-    0 1px 4px rgb(0 0 0 / 10%);
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid var(--border-color);
 }
 
 .ask-form-container label h4 {
   margin-bottom: 0%;
+  color: var(--text-primary);
 }
 
 .ask-form-container label p {
   margin: 0%;
   font-size: 13px;
   padding: 3px 0px;
+  color: var(--text-secondary);
 }
 
 .ask-form-container label input,
 .ask-form-container label textarea {
   padding: 10px;
-  border: solid 1px #0000003e;
+  border: solid 1px var(--border-color);
   font-family: "Roboto", sans-serif;
   width: calc(100% - 20px);
   resize: none;
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+
+.ask-form-container label input::placeholder,
+.ask-form-container label textarea::placeholder {
+  color: var(--text-muted);
 }
 
 .review-btn {
   margin: 50px 0px;
   padding: 10px;
-  background-color: #009dff;
-  border: solid 1px #009dff;
-  color: white;
+  background-color: var(--secondary-accent);
+  border: solid 1px var(--secondary-accent);
+  color: #fff;
   border-radius: 4px;
   cursor: pointer;
   transition: 0.3s;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(245,160,64,0.08);
 }
 
 .review-btn:hover {
-  background-color: #0086d8;
+  background-color: #ffc180;
+  border-color: #ffc180;
 }
 
 .ql-editor {
   min-height: 150px;
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
 }

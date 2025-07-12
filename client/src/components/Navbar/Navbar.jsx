@@ -41,54 +41,41 @@ const Navbar = ({ setIsOpen }) => {
   return (
     <nav className="main-nav">
       <div className="navbar">
-        <button className="slide-in-icon">
-          <img src={bars} alt="bars" width="15" />
-        </button>
-        <div className="navbar-1">
-          <Link to="/" className="nav-item nav-logo">
-            <img src={logo} alt="logo" />
+        <Link to="/" className="nav-item nav-logo" style={{display: 'flex', alignItems: 'center', gap: '4px', textDecoration: 'none'}}>
+          <img src="/favicon.png" alt="StackIt Favicon" style={{height: '48px', width: '48px', display: 'inline-block', verticalAlign: 'middle'}} />
+          <span className="navbar-brand-text" style={{fontWeight: 700, fontSize: '1.5rem', color: 'var(--text-primary)', letterSpacing: '1px'}}>StackIt</span>
+        </Link>
+        <div className="navbar-right">
+          <Link to="/" className="nav-item nav-links" style={{marginRight: '16px', fontWeight: 500, fontSize: '1.05rem', color: 'var(--text-primary)', textDecoration: 'none'}}>
+            Home
           </Link>
-          <Link className="nav-item nav-btn res-nav" 
-            onClick={() => setIsOpen(prev => !prev)}
-          >
-              Chatbot
+          {User === null ? (
+            <Link to={'/Auth'} className='nav-item nav-links'>
+              Log In
             </Link>
-            <Link to="/" className="nav-item nav-btn res-nav">
-              Community
-            </Link>
-        </div>
-        <div className="navbar-2">
-          <form>
-            <input type="text" placeholder="   Search..." />
-            <img src={search} alt="search" width="18" className="search-icon" />
-          </form>
-          {
-            User === null ? (
-              <Link to={'/Auth'} className='nav-item nav-links'>
-                Log In
-              </Link>
-            ) : (
-              <>
-                <Avatar
-                  backgroundColor="#009dff"
-                  px="10px"
-                  py="7px"
-                  borderRadius="50%"
-                  color="white"
+          ) : (
+            <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+              <Avatar
+                backgroundColor="#47a4ff"
+                px="10px"
+                py="7px"
+                borderRadius="50%"
+                color="#fff"
+              >
+                <Link
+                  to={`/Users/${User?.result?._id}`}
+                  style={{
+                    color: "#fff", textDecoration: "none"
+                  }}
                 >
-                  <Link
-                    to={`/Users/${User?.result?._id}`}
-                    style={{
-                      color: "white", textDecoration: "none"
-                    }}
-                  >
-                    {User.result.name.charAt(0).toUpperCase()}
-                  </Link>
-                </Avatar>
-                <button className='nav-item nav-links' onClick={handleLogout}>Log Out</button>
-              </>
-            )
-          }
+                  {User.result.name.charAt(0).toUpperCase()}
+                </Link>
+              </Avatar>
+              <span style={{fontWeight: 500, fontSize: '1.05rem', color: 'var(--text-primary)'}}>
+                Hi, {User.result.name.split(' ')[0]}!
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </nav>

@@ -1,0 +1,114 @@
+.action-bar {
+  width: 100%;
+  background: var(--secondary-bg);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px 8px 24px;
+  border-bottom: 2px solid var(--border-color);
+  gap: 24px;
+  box-sizing: border-box;
+  margin-bottom: 18px;
+  margin-top: 0;
+}
+
+.action-bar-section {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.action-bar-section.center {
+  justify-content: center;
+}
+.action-bar-section.right {
+  justify-content: flex-end;
+}
+
+.ask-btn {
+  background: var(--secondary-accent);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.2s, color 0.2s;
+  font-family: inherit;
+}
+.ask-btn:hover {
+  background: #ffc180;
+  color: #fff;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--secondary-bg);
+  border: 1.5px solid #bfc8d2;
+  border-radius: 7px;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-family: inherit;
+}
+.filter-group button {
+  background: var(--secondary-bg);
+  border: 1.5px solid #bfc8d2;
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-left: 4px;
+  font-family: inherit;
+}
+.filter-group button:hover {
+  background: #e0e0e0;
+}
+
+.search-group {
+  display: flex;
+  align-items: center;
+  background: var(--secondary-bg);
+  border: 1.5px solid #bfc8d2;
+  border-radius: 7px;
+  padding: 3px 8px;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+.search-group input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  padding: 1px 4px;
+  font-family: inherit;
+}
+.search-group input::placeholder {
+  color: var(--text-muted);
+}
+.search-group .search-icon {
+  color: var(--text-primary);
+  font-size: 1rem;
+  margin-right: 4px;
+}
+
+@media (max-width: 900px) {
+  .action-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 10px 6px 6px 6px;
+    margin-bottom: 10px;
+    margin-top: 0;
+  }
+  .action-bar-section {
+    justify-content: stretch !important;
+  }
+} 

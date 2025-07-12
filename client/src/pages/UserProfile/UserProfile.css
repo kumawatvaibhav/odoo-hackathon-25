@@ -15,69 +15,94 @@
   padding-left: 20px;
 }
 .user-name p {
-  color: #7e7e7e;
+  color: var(--text-muted);
 }
 .edit-profile-btn {
   padding: 8px 10px;
-  border: solid 1px #7e7e7e;
-  border-radius: 2px;
-  background-color: white;
+  border: solid 1px var(--border-color);
+  border-radius: 4px;
+  background-color: var(--card-bg);
+  color: var(--accent-color);
   cursor: pointer;
   transition: 0.3s;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255,136,0,0.08);
 }
 .edit-profile-btn:hover {
-  background-color: #f5f9fc;
+  background-color: var(--secondary-bg);
+  border-color: var(--accent-color);
 }
 .edit-profile-title {
   padding: 20px 0px;
-  border-bottom: solid 1px #dbd9d9;
+  border-bottom: solid 1px var(--border-color);
+  color: var(--text-primary);
 }
 .edit-profile-title-2 {
-  color: grey;
+  color: var(--text-muted);
   font-weight: 400;
 }
 .edit-profile-form {
   padding: 20px;
-  border: solid 1px #dbd9d9;
-  border-radius: 5px;
+  border: solid 1px var(--border-color);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .edit-profile-form label h3 {
   margin: 0%;
   padding: 3px 0px;
+  color: var(--text-primary);
 }
 .edit-profile-form label p {
   margin: 0%;
   padding: 3px 0px;
+  color: var(--text-secondary);
 }
 .edit-profile-form label input,
 .edit-profile-form label textarea {
   padding: 5px;
   margin-bottom: 20px;
-  border: solid 1px #dbd9d9;
+  border: solid 1px var(--border-color);
   width: 50%;
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+
+.edit-profile-form label input::placeholder,
+.edit-profile-form label textarea::placeholder {
+  color: var(--text-muted);
 }
 
 .user-submit-btn {
   padding: 14px 10px;
-  background-color: #0a95ff;
-  color: white;
+  background-color: var(--accent-color);
+  color: #fff;
   border: none;
   border-radius: 5px;
   transition: 0.2s;
   cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255,136,0,0.08);
 }
 
 .user-submit-btn:hover {
-  background-color: #0074cc;
+  background-color: var(--accent-hover);
 }
 
 .user-cancel-btn {
   padding: 14px 10px;
-  color: #0a95ff;
+  color: var(--accent-color);
   background-color: transparent;
   border: none;
   margin-left: 10px;
   cursor: pointer;
+  transition: 0.2s;
+  font-weight: 600;
+}
+
+.user-cancel-btn:hover {
+  color: var(--accent-hover);
 }
 
 .user-tags-container{
@@ -88,8 +113,16 @@
   text-decoration: none;
   padding: 0 5px;
   margin: 5px;
-  background-color: #e1ecf4;
-  color: #39739d;
-  border-radius: 2px;
+  background-color: var(--accent-hover);
+  color: var(--accent-color);
+  border-radius: 4px;
   font-size: 13px;
+  transition: 0.2s;
+  font-weight: 600;
+}
+
+.user-tags-link:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+  transform: translateY(-1px);
 }

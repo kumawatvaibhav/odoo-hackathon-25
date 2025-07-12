@@ -14,19 +14,6 @@ const LeftSidebar = () => {
           </NavLink>
         </button>
         <div className="side-nav-div">
-          <div>
-            <p>PUBLIC</p>
-          </div>
-          <button  className="nav-btn">
-            <NavLink
-              to="/Questions"
-              className="side-nav-links"
-              activeclassname="active"
-            >
-              <img src={Globe} alt="Globe" />
-              <p style={{ paddingLeft: "10px" }}> Questions </p>
-            </NavLink>
-          </button>
           <button  className="nav-btn">
             <NavLink
               to="/Tags"

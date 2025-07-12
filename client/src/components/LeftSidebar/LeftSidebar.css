@@ -1,12 +1,13 @@
 .left-sidebar {
   width: 164px;
-  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
-  background-color: white;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
+  background-color: var(--sidebar-bg);
   height: auto;
   min-height: 100vh;
   transition: box-shadow ease-in-out 0.1s, transform ease-in-out 0.1s;
   box-sizing: border-box;
   font-size: 13px;
+  border-right: 1px solid var(--border-color);
 }
 
 .left-sidebar .nav-btn {
@@ -34,23 +35,25 @@
 
 .side-nav-links {
   text-decoration: none;
-  color: #3a3a3a;
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding-left: 10px;
   transition: 0.2s;
+  border-radius: 4px;
 }
 
 .side-nav-links:hover {
-  color: black;
+  color: var(--accent-color);
+  background-color: var(--secondary-bg);
 }
 
 .active {
   font-weight: bolder;
-  color: black;
-  background-color: rgb(225, 225, 225);
-  border-right: solid 3px #ef8236;
+  color: var(--accent-color);
+  background-color: var(--secondary-bg);
+  border-right: solid 3px var(--accent-color);
 }
 
 @media screen and (max-width: 760px) {

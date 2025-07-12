@@ -7,7 +7,7 @@ import AllRoutes from "./AllRoutes";
 import { fetchAllQuestions } from "./actions/question";
 import { fetchAllUsers } from "./actions/users";
 import { Toaster } from 'react-hot-toast';
-import Chatbot from "./components/Chatbot/Chatbot";
+import ActionBar from './components/ActionBar/ActionBar';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false) 
@@ -24,20 +24,8 @@ function App() {
       <Router>
         <Toaster />
         <Navbar setIsOpen={setIsOpen}/>
+        <ActionBar />
         <AllRoutes />
-        {isOpen ? (
-          <Chatbot
-            setIsOpen={setIsOpen}
-            isVerified={isVerified}
-            setIsVerified={setIsVerified}
-          />
-        )
-          : <button
-              className="open-chatbot"
-              onClick={() => setIsOpen((prev) => !prev)}
-          >
-            Have Doubts? Click here!
-          </button>}
       </Router>
     </div>
   );
