@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import decode from "jwt-decode";
 
 import Avatar from '../Avatar/Avatar'
+import NotificationIcon from '../NotificationIcon/NotificationIcon'
 import { setCurrentUser } from '../../actions/currentUser'
 
 import logo from '../../assets/logo.png'
@@ -69,6 +70,7 @@ const Navbar = ({ setIsOpen }) => {
               </Link>
             ) : (
               <>
+                <NotificationIcon />
                 <Avatar
                   backgroundColor="#009dff"
                   px="10px"

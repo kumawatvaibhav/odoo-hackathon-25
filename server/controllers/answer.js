@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Questions from "../models/questions.js";
+import Notifications from "../models/notifications.js";
 
 export const postAnswer = async (req, res) => {
   const { id: _id } = req.params
@@ -17,6 +18,20 @@ export const postAnswer = async (req, res) => {
           answerBody, userAnswered, userId
         }]
       }})
+    
+    // Create notification for question owner
+    const question = await Questions.findById(_id);
+    if (question && question.userId !== userId) {
+      const notification = new Notifications({
+        recipient: question.userId,
+        sender: userId,
+        type: 'answer',
+        questionId: _id,
+        content: `${userAnswered} answered your question "${question.questionTitle}"`
+      });
+      await notification.save();
+    }
+    
     res.status(200).json(updatedQuestion);
   } catch (error) {
     res.status(400).json("Error while updating");

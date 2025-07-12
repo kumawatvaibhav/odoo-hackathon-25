@@ -1,4 +1,5 @@
 import Questions from "../models/questions.js";
+import Notifications from "../models/notifications.js";
 import mongoose from "mongoose";
 
 export const askQuestion = async (req, res) => {
@@ -81,8 +82,81 @@ export const voteQuestion = async (req, res) => {
       }
     }
     await Questions.findByIdAndUpdate(_id, question);
+    
+    // Create notification for question owner if someone votes on their question
+    if (question.userId !== userId) {
+      const voteType = value === "upVote" ? "upvoted" : "downvoted";
+      const notification = new Notifications({
+        recipient: question.userId,
+        sender: userId,
+        type: 'vote',
+        questionId: _id,
+        content: `Someone ${voteType} your question "${question.questionTitle}"`
+      });
+      await notification.save();
+    }
+    
     res.status(200).json({ message: "Voted successfully..." });
   } catch (error) {
     res.status(404).json({ message: "Id not found" });
+  }
+};
+
+export const acceptAnswer = async (req, res) => {
+  const { id: _id } = req.params;
+  const { answerId, userId } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(404).send("Question unavailable...");
+  }
+
+  if (!mongoose.Types.ObjectId.isValid(answerId)) {
+    return res.status(404).send("Answer unavailable...");
+  }
+
+  try {
+    const question = await Questions.findById(_id);
+    
+    if (!question) {
+      return res.status(404).send("Question not found...");
+    }
+
+    // Check if the user is the question owner
+    if (question.userId !== userId) {
+      return res.status(403).send("Only question owner can accept answers...");
+    }
+
+    // First, unaccept all answers
+    await Questions.updateOne(
+      { _id },
+      { $set: { "answer.$[].isAccepted": false } }
+    );
+
+    // Then accept the selected answer
+    await Questions.updateOne(
+      { _id, "answer._id": answerId },
+      { $set: { "answer.$.isAccepted": true } }
+    );
+
+    // Find the accepted answer to get the user who answered
+    const updatedQuestion = await Questions.findById(_id);
+    const acceptedAnswer = updatedQuestion.answer.find(ans => ans._id.toString() === answerId);
+    
+    if (acceptedAnswer && acceptedAnswer.userId !== userId) {
+      // Create notification for the answer author
+      const notification = new Notifications({
+        recipient: acceptedAnswer.userId,
+        sender: userId,
+        type: 'accept',
+        questionId: _id,
+        answerId: answerId,
+        content: `Your answer to "${question.questionTitle}" was accepted!`
+      });
+      await notification.save();
+    }
+
+    res.status(200).json({ message: "Answer accepted successfully..." });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 };

@@ -32,6 +32,9 @@ export const deleteQuestion = (id) => (
 export const voteQuestion = (id, value, userId) => (
   API.patch(`/questions/vote/${id}`, { value, userId })
 )
+export const acceptAnswer = (id, answerId, userId) => (
+  API.patch(`/questions/accept-answer/${id}`, { answerId, userId })
+)
 
 // ANSWER
 export const postAnswer = (id, noOfAnswers, answerBody, userAnswered, userId) => (

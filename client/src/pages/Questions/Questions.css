@@ -140,6 +140,39 @@
   white-space: pre-line;
 }
 
+/* Accepted answer styles */
+.accepted-answer {
+  background-color: #f8fff8;
+  border-left: 4px solid #5cb85c;
+  padding-left: 15px;
+  margin-bottom: 15px;
+}
+
+.accepted-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #5cb85c;
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.accept-btn {
+  background-color: #5cb85c !important;
+  color: white !important;
+  border: 1px solid #5cb85c !important;
+  padding: 5px 10px !important;
+  border-radius: 3px !important;
+  font-size: 12px !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.accept-btn:hover {
+  background-color: #4cae4c !important;
+}
+
 @media screen and (max-width: 1020px) {
   .question-details-page {
     width: calc(100% - 24px);

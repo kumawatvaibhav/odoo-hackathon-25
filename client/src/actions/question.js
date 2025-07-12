@@ -65,5 +65,14 @@ export const deleteAnswer = (id, answerId, noOfAnswers) => async (dispatch) => {
   }
 };
 
+export const acceptAnswer = (id, answerId, userId) => async (dispatch) => {
+  try {
+    await api.acceptAnswer(id, answerId, userId);
+    dispatch(fetchAllQuestions());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 
